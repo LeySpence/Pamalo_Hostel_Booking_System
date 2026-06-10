@@ -85,7 +85,8 @@ header {
     padding:30px;
 }
 
-.about h2, .services h2, .hostels h2{
+.about h2, .services h2, .hostels h2, 
+.contact h2{
     font-size: 36px;
     text-align: center;
 }
@@ -150,4 +151,25 @@ header {
 
 .hostel-cards{
     display: flex;
+}
+
+
+.contact{
+    padding: 30px;
+}
+
+.contact-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.map{
+    width: 400px;
 }
