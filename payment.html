@@ -1,42 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="assets/js/script.js"></script> 
+    <title>Pamalo Hostel Booking System</title>
 </head>
+
 <body>
-<table class="payment-table">
-    <tr>
-        <th>Item</th>
-        <th>Price</th>
-    </tr>
-    <tr>
-        <td>Product 1</td>
-        <td>$10.00</td>
-    </tr>
-    <tr>
-        <td>Product 2</td>
-        <td>$20.00</td>
-    </tr>
-    <tr>
-        <td>Total</td>
-        <td>$30.00</td>
-    </tr>
-</table>
-    <div class="payment-container">
-        <h1>Payment Information</h1>
-        <form action="/submit-payment" method="POST">
-            <label for="card-number">Card Number:</label>
-            <input type="text" id="card-number" name="card-number" required>
+    <header>
+        <div class="topnav">
+            <div class="logo">
+                <h1>PAHOBS</h1>
+            </div>
+            <div class="hamburger">
+                <span>&#9776;</span>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <h2 class="payment-heading">Payment Page</h2>
+    <form class="payment-form">
+        <label class="dolo">Full Name</label>
+        <input type="text" placeholder="Enter your full name" required>
 
-            <label for="expiry-date">Expiry Date:</label>
-            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+        <label class="dolo">Email</label>
+        <input type="email" placeholder="Enter your email" required>
 
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" required>
+        <label class="dolo">Amount</label>
+        <input type="number" placeholder="Enter amount" required>
 
-            <button type="submit">Submit Payment</button>
-        </form>
-    </div>
+        <label class="dolo">Payment Method</label>
+
+        <nav class="payment-methods">
+        <input type="radio" name="payment-method" value="credit-card" required> Credit Card
+        <input type="radio" name="payment-method" value="Airtel Money" required> Airtel Money
+        <input type="radio" name="payment-method" value="TNM mpamba" required> TNM mpamba
+        </nav>
+
+        <label class="dolo">Card Number</label>
+        <input type="text" placeholder="Enter your card number" required>
+
+        <label class="dolo">Payment Password</label>
+        <input type="password" placeholder="Enter payment password" required>
+
+        <button type="submit">Pay Now</button>
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+     
+</body>
+</html>
