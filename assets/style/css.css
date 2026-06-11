@@ -506,4 +506,26 @@ footer {
     font-weight: bold;
 
 }
-.
+.login-section{
+    max-width: 400px;
+    padding: 10px;
+    margin: 100px auto;
+    background-color: #c8f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: new 'Times New Roman', Times, serif, sans-serif;
+}
+
+.login-section input{
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    font-family: inherit;
+    width
+}
