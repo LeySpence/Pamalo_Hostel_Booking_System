@@ -592,6 +592,21 @@ footer {
         width: 100%;
     }
 }
+/* --- payment --- */
+.payment-heading {
+    padding: 70px;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.payment-form {
+    padding: 10px;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    margin-top: 5px;
+}
 
 footer {
     background-color: #333;
