@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style/css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Added defer to ensure DOM is loaded before script runs -->
-    <script src="assets/js/script.js" defer></script> 
-    <title>Pamalo Hostel Booking System</title>
+    <script src="assets/js/script.js" defer></script>
+    <title>Payment - Pamalo Hostel Booking System</title>
 </head>
-
 <body>
     <header>
         <div class="topnav">
             <div class="logo">
-                <h1>PAHOBS</h1>
+                <h1>Pamalo Hostel Booking System</h1>
             </div>
             <div class="hamburger">
                 <span>&#9776;</span>
@@ -28,44 +25,40 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <h2 class="payment-heading">Payment Page</h2>
-    <form class="payment-form">
-        <label class="dolo">Full Name</label>
-        <input type="text" placeholder="Enter your full name" required>
-
-        <label class="dolo">Email</label>
-        <input type="email" placeholder="Enter your email" required>
-
-        <label class="dolo">Amount</label>
-        <input type="number" placeholder="Enter amount" required>
-
-        <label class="dolo">Payment Method</label>
-
-        <nav class="payment-methods">
-        <input type="radio" name="payment-method" value="credit-card" required> Credit Card
-        <input type="radio" name="payment-method" value="Airtel Money" required> Airtel Money
-        <input type="radio" name="payment-method" value="TNM mpamba" required> TNM mpamba
-        </nav>
-
-        <label class="dolo">Card Number</label>
-        <input type="text" placeholder="Enter your card number" required>
-
-        <label class="dolo">Payment Password</label>
-        
-
-        <button type="submit">Pay Now</button>
-
-
-    </form>
-
-
-
-
-
-
-
-
-
-     
+    <main>
+        <div class="payment-card">
+            <h2>Payment</h2>
+            <form class="payment-form">
+                <div>
+                    <label class="dolo">Full Name</label>
+                    <input type="text" placeholder="Enter your full name" required>
+                </div>
+                <div>
+                    <label class="dolo">Email</label>
+                    <input type="email" placeholder="Enter your email" required>
+                </div>
+                <div>
+                    <label class="dolo">Amount</label>
+                    <input type="number" placeholder="Enter amount" required>
+                </div>
+                <div>
+                    <label class="dolo">Payment Method</label>
+                    <div class="payment-methods">
+                        <label><input type="radio" name="payment-method" value="credit-card" required> Credit Card</label>
+                        <label><input type="radio" name="payment-method" value="Airtel Money" required> Airtel Money</label>
+                        <label><input type="radio" name="payment-method" value="TNM mpamba" required> TNM mpamba</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="dolo">Card Number</label>
+                    <input type="text" placeholder="Enter your card number" required>
+                </div>
+                <button type="submit">Pay Now</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Pamalo Hostel Booking System. All rights reserved.</p>
+    </footer>
 </body>
 </html>

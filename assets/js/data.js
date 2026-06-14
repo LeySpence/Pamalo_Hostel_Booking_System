@@ -467,3 +467,409 @@ function badge(status) {
     var label = status.charAt(0).toUpperCase() + status.slice(1);
     return '<span class="badge ' + cls + '">' + label + '</span>';
 }
+
+/* --- PAGE INITIALIZATION --- */
+(function() {
+    function qs(id) { return document.getElementById(id); }
+    function qsa(sel) { return document.querySelectorAll(sel); }
+
+    /* Auth pages */
+    function initLogin() {
+        qs('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.email.value;
+            var password = this.password.value;
+            var result = AppData.login(email, password);
+            if (result.ok) {
+                var role = result.user.role;
+                if (role === 'admin' || role === 'staff') window.location.href = 'admin.html';
+                else window.location.href = 'dashboard.html';
+            } else {
+                var err = qs('login-error');
+                err.textContent = result.error;
+                err.style.display = 'block';
+            }
+        });
+    }
+
+    function initSignup() {
+        qs('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var firstName = this.firstName.value;
+            var lastName = this.lastName.value;
+            var email = this.email.value;
+            var phone = this.phone.value;
+            var password = this.password.value;
+            var confirm = this.confirmPassword.value;
+            if (password !== confirm) {
+                qs('signup-error').textContent = 'Passwords do not match.';
+                qs('signup-error').style.display = 'block';
+                return;
+            }
+            var result = AppData.register(firstName, lastName, email, phone, password);
+            if (result.ok) {
+                qs('signup-success').textContent = 'Account created! Redirecting to login...';
+                qs('signup-success').style.display = 'block';
+                qs('signup-error').style.display = 'none';
+                setTimeout(function() { window.location.href = 'Login.html'; }, 1500);
+            } else {
+                qs('signup-error').textContent = result.error;
+                qs('signup-error').style.display = 'block';
+            }
+        });
+    }
+
+    function initResetPassword() {
+        var requestForm = qs('reset-request-form');
+        var completeForm = qs('reset-complete-form');
+        requestForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var result = AppData.requestPasswordReset(this.email.value);
+            if (result.ok) {
+                qs('reset-error').style.display = 'none';
+                qs('reset-success').textContent = 'Reset code: ' + result.code + ' (simulated)';
+                qs('reset-success').style.display = 'block';
+                requestForm.style.display = 'none';
+                completeForm.style.display = 'block';
+            } else {
+                qs('reset-error').textContent = result.error;
+                qs('reset-error').style.display = 'block';
+            }
+        });
+        completeForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = requestForm.email.value;
+            var code = this.code.value;
+            var newPassword = this.newPassword.value;
+            var confirm = this.confirmPassword.value;
+            if (newPassword !== confirm) {
+                qs('reset-error').textContent = 'Passwords do not match.';
+                qs('reset-error').style.display = 'block';
+                return;
+            }
+            var result = AppData.resetPassword(email, code, newPassword);
+            if (result.ok) {
+                qs('reset-success').textContent = 'Password reset successfully! Redirecting to login...';
+                qs('reset-error').style.display = 'none';
+                setTimeout(function() { window.location.href = 'Login.html'; }, 1500);
+            } else {
+                qs('reset-error').textContent = result.error;
+                qs('reset-error').style.display = 'block';
+            }
+        });
+    }
+
+    /* Dashboard pages */
+    function initDashboard(session) {
+        var userId = session.user.id;
+        var user = session.user;
+        var bookings = AppData.get('bookings').filter(function(b) { return b.userId === userId; });
+        var active = bookings.filter(function(b) { return b.status === 'active'; });
+        var pending = bookings.filter(function(b) { return b.paymentStatus === 'pending'; });
+        var completed = bookings.filter(function(b) { return b.status === 'completed'; });
+        var totalSpent = bookings.filter(function(b) { return b.paymentStatus === 'paid'; }).reduce(function(s, b) { return s + b.amount; }, 0);
+        if (qs('welcome-name')) qs('welcome-name').textContent = (user.firstName || user.name || 'Guest');
+        qs('stat-active').textContent = active.length;
+        qs('stat-pending').textContent = pending.length;
+        qs('stat-completed').textContent = completed.length;
+        var reviews = AppData.get('reviews').filter(function(r) { return r.userId === userId && r.status === 'approved'; });
+        var avg = reviews.length ? (reviews.reduce(function(s, r) { return s + r.rating; }, 0) / reviews.length).toFixed(1) : '0';
+        qs('stat-rating').textContent = avg;
+        if (qs('stat-spent')) qs('stat-spent').textContent = mk(totalSpent);
+        var currentBody = qs('current-bookings-body');
+        var activeBookings = bookings.filter(function(b) { return b.status === 'active' || b.status === 'upcoming'; });
+        if (activeBookings.length) {
+            activeBookings.slice(0, 5).forEach(function(b) {
+                var tr = document.createElement('tr');
+                tr.style.cursor = 'pointer';
+                tr.addEventListener('click', function() { window.location.href = 'booking-details.html?id=' + b.id; });
+                tr.innerHTML = '<td>' + b.hostel + '</td><td>' + b.room + '</td><td>' + formatDate(b.checkIn) + '</td><td>' + formatDate(b.checkOut) + '</td><td>' + badge(b.status) + '</td>';
+                currentBody.appendChild(tr);
+            });
+        } else {
+            currentBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#888;padding:20px;">No current bookings</td></tr>';
+        }
+        var historyBody = qs('booking-history-body');
+        if (bookings.length) {
+            bookings.slice(0, 10).forEach(function(b) {
+                var tr = document.createElement('tr');
+                tr.style.cursor = 'pointer';
+                tr.addEventListener('click', function() { window.location.href = 'booking-details.html?id=' + b.id; });
+                tr.innerHTML = '<td>' + b.hostel + '</td><td>' + b.room + '</td><td>' + formatDate(b.checkIn) + ' - ' + formatDate(b.checkOut) + '</td><td>' + mk(b.amount) + '</td><td>' + badge(b.status) + '</td>';
+                historyBody.appendChild(tr);
+            });
+        } else {
+            historyBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#888;padding:20px;">No bookings yet</td></tr>';
+        }
+        var notifContainer = qs('dashboard-notifications');
+        if (notifContainer) {
+            var notifs = AppData.getNotificationsForUser(userId).slice(0, 5);
+            if (notifs.length) {
+                notifs.forEach(function(n) {
+                    var div = document.createElement('div');
+                    div.className = 'notification-item' + (n.read ? '' : ' unread');
+                    div.innerHTML = '<div class="notif-icon"><i class="fas fa-' + (n.type === 'booking' ? 'calendar-check' : n.type === 'payment' ? 'credit-card' : 'info-circle') + '"></i></div><div class="notif-content"><div class="notif-title">' + n.title + '</div><div class="notif-message">' + n.message + '</div><div class="notif-time">' + timeAgo(n.time) + '</div></div>';
+                    notifContainer.appendChild(div);
+                });
+            } else {
+                notifContainer.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">No notifications</p>';
+            }
+        }
+    }
+
+    function initMyBookings(session) {
+        var userId = session.user.id;
+        var allBookings = AppData.get('bookings').filter(function(b) { return b.userId === userId; });
+        function renderBookings(filter) {
+            var tbody = qs('bookings-table-body');
+            tbody.innerHTML = '';
+            var filtered = filter ? allBookings.filter(function(b) { return b.status === filter; }) : allBookings;
+            if (filtered.length) {
+                filtered.forEach(function(b) {
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + b.id + '</td><td>' + b.hostel + '</td><td>' + b.room + '</td><td>' + formatDate(b.checkIn) + '</td><td>' + formatDate(b.checkOut) + '</td><td>' + mk(b.amount) + '</td><td>' + badge(b.status) + '</td><td><a href="booking-details.html?id=' + b.id + '" class="btn btn-sm btn-outline">View</a></td>';
+                    tbody.appendChild(tr);
+                });
+            } else {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#888;padding:20px;">No bookings found</td></tr>';
+            }
+        }
+        renderBookings(null);
+        var filterBtns = qsa('.filter-btn');
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                var filter = this.textContent.toLowerCase();
+                renderBookings(filter === 'all' ? null : filter);
+            });
+        });
+    }
+
+    function initBookingDetails(session) {
+        var params = new URLSearchParams(window.location.search);
+        var bookingId = params.get('id');
+        if (!bookingId) { qs('booking-title').textContent = 'Booking not found'; return; }
+        var booking = AppData.getById('bookings', bookingId);
+        if (!booking || booking.userId !== session.user.id) { qs('booking-title').textContent = 'Booking not found'; return; }
+        qs('booking-title').textContent = 'Booking ' + booking.id;
+        if (qs('detail-hostel')) qs('detail-hostel').textContent = booking.hostel;
+        if (qs('detail-room')) qs('detail-room').textContent = booking.room;
+        if (qs('detail-checkin')) qs('detail-checkin').textContent = formatDate(booking.checkIn);
+        if (qs('detail-checkout')) qs('detail-checkout').textContent = formatDate(booking.checkOut);
+        if (qs('detail-duration')) qs('detail-duration').textContent = AppData.nightsBetween(booking.checkIn, booking.checkOut) + ' nights';
+        if (qs('detail-guests')) qs('detail-guests').textContent = booking.guests + ' guest(s)';
+        if (qs('detail-amount')) qs('detail-amount').textContent = mk(booking.amount);
+        if (qs('detail-paystatus')) qs('detail-paystatus').innerHTML = badge(booking.paymentStatus);
+        if (qs('detail-method')) qs('detail-method').textContent = booking.paymentMethod || 'Not paid';
+        if (qs('detail-paidon')) qs('detail-paidon').textContent = booking.paidOn ? formatDate(booking.paidOn) : 'N/A';
+        var receiptBody = qs('receipt-body');
+        if (receiptBody) {
+            var nights = AppData.nightsBetween(booking.checkIn, booking.checkOut);
+            var room = AppData.getById('rooms', booking.room);
+            var pricePerNight = room ? room.price : 0;
+            receiptBody.innerHTML = '<tr><td>' + booking.room + ' at ' + booking.hostel + '</td><td>' + nights + '</td><td>' + mk(pricePerNight) + '</td><td>' + mk(booking.amount) + '</td></tr>';
+        }
+        var hostels = AppData.get('hostelList');
+        var hostel = hostels.find(function(h) { return h.name === booking.hostel; });
+        var hostelName = hostel ? hostel.name : booking.hostel;
+        var reviewsContainer = qs('reviews-container');
+        if (reviewsContainer) {
+            var reviews = AppData.getReviewsByHostel(hostelName);
+            if (reviews.length) {
+                reviews.forEach(function(r) {
+                    var div = document.createElement('div');
+                    div.style.cssText = 'padding:12px;border-bottom:1px solid #f0f0f0;margin-bottom:8px;';
+                    div.innerHTML = '<div style="display:flex;justify-content:space-between;margin-bottom:4px;"><strong>' + '★'.repeat(r.rating) + '</strong><span style="font-size:12px;color:#888;">' + formatDate(r.createdAt) + '</span></div><p style="font-size:14px;color:#555;margin:0;">' + r.comment + '</p>';
+                    reviewsContainer.appendChild(div);
+                });
+            } else {
+                reviewsContainer.innerHTML = '<p style="color:#888;text-align:center;padding:12px;">No reviews yet for this hostel.</p>';
+            }
+        }
+        var reviewForm = qs('review-form');
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var rating = parseInt(this.rating.value);
+                var comment = this.comment.value;
+                if (AppData.hasUserReviewed(session.user.id, hostelName)) {
+                    alert('You have already reviewed this hostel.');
+                    return;
+                }
+                AppData.addReview(session.user.id, hostelName, rating, comment);
+                alert('Review submitted for approval.');
+                this.reset();
+            });
+        }
+        var cancelBtn = qs('booking-details-container').querySelector('.btn-danger');
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', function() {
+                if (confirm('Cancel this booking?')) {
+                    var result = AppData.cancelBooking(bookingId);
+                    if (result.ok) {
+                        alert('Booking cancelled.');
+                        window.location.reload();
+                    } else {
+                        alert(result.error);
+                    }
+                }
+            });
+        }
+    }
+
+    function initNotifications(session) {
+        var userId = session.user.id;
+        var allNotifs = AppData.getNotificationsForUser(userId);
+        function renderNotifs(filter) {
+            var container = qs('notifications-container');
+            container.innerHTML = '';
+            var filtered = filter ? allNotifs.filter(function(n) { return filter === 'unread' ? !n.read : n.type === filter; }) : allNotifs;
+            if (filtered.length) {
+                filtered.forEach(function(n) {
+                    var div = document.createElement('div');
+                    div.className = 'notification-item' + (n.read ? '' : ' unread');
+                    div.innerHTML = '<div class="notif-icon"><i class="fas fa-' + (n.type === 'booking' ? 'calendar-check' : n.type === 'payment' ? 'credit-card' : 'info-circle') + '"></i></div><div class="notif-content"><div class="notif-title">' + n.title + '</div><div class="notif-message">' + n.message + '</div><div class="notif-time">' + timeAgo(n.time) + '</div></div>';
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<p style="text-align:center;color:#888;padding:20px;">No notifications</p>';
+            }
+        }
+        renderNotifs(null);
+        var filterBtns = qsa('.filter-btn');
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                renderNotifs(this.textContent.toLowerCase() === 'all' ? null : this.textContent.toLowerCase());
+            });
+        });
+        var markBtn = qs('notifications-container').parentElement.querySelector('.btn-outline');
+        if (markBtn) {
+            markBtn.addEventListener('click', function() {
+                AppData.markAllNotificationsRead(userId);
+                renderNotifs(null);
+                qsa('.notification-bell .badge').forEach(function(b) { b.textContent = '0'; });
+            });
+        }
+    }
+
+    function initEditProfile(session) {
+        var user = session.user;
+        qs('profile-form').firstName.value = user.firstName;
+        qs('profile-form').lastName.value = user.lastName;
+        qs('profile-form').email.value = user.email;
+        qs('profile-form').phone.value = user.phone || '';
+        qs('profile-form').bio.value = AppData.get('profile').bio || '';
+        if (qs('profile-name')) qs('profile-name').textContent = user.firstName + ' ' + user.lastName;
+        if (qs('profile-email')) qs('profile-email').textContent = user.email;
+        qs('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            AppData.updateItem('users', user.id, {
+                firstName: this.firstName.value,
+                lastName: this.lastName.value,
+                email: this.email.value,
+                phone: this.phone.value
+            });
+            AppData.set('profile', Object.assign(AppData.get('profile'), { bio: this.bio.value }));
+            alert('Profile updated.');
+        });
+        qs('password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (btoa(this.currentPassword.value) !== user.password) {
+                alert('Current password is incorrect.');
+                return;
+            }
+            if (this.newPassword.value !== this.confirmPassword.value) {
+                alert('New passwords do not match.');
+                return;
+            }
+            AppData.updateItem('users', user.id, { password: btoa(this.newPassword.value) });
+            alert('Password updated.');
+            this.reset();
+        });
+        var prefs = AppData.get('preferences');
+        var prefForm = qs('preferences-form');
+        if (prefForm) {
+            prefForm.emailNotif.checked = prefs.emailNotif;
+            prefForm.smsNotif.checked = prefs.smsNotif;
+            prefForm.promotions.checked = prefs.promotions;
+            prefForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                AppData.set('preferences', {
+                    emailNotif: this.emailNotif.checked,
+                    smsNotif: this.smsNotif.checked,
+                    promotions: this.promotions.checked
+                });
+                alert('Preferences saved.');
+            });
+        }
+    }
+
+    /* Public pages */
+    function initContact() {
+        qs('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var result = AppData.submitContact(this.name.value, this.email.value, this.subject.value, this.message.value);
+            if (result.ok) {
+                qs('contact-alert').textContent = 'Message sent successfully!';
+                qs('contact-alert').className = 'alert alert-success';
+                qs('contact-alert').style.display = 'block';
+                this.reset();
+            }
+        });
+    }
+
+    function initHostels() {
+        function renderRooms(rooms) {
+            var container = qs('room-results');
+            container.innerHTML = '';
+            if (!rooms.length) {
+                container.innerHTML = '<p style="text-align:center;color:#888;padding:40px;">No rooms match your criteria.</p>';
+                return;
+            }
+            rooms.forEach(function(r) {
+                var div = document.createElement('div');
+                div.className = 'hostel-card';
+                div.style.cssText = 'position:relative;height:300px;background-size:cover;background-position:center;overflow:hidden;flex:1;min-width:300px;max-width:400px;display:flex;align-items:flex-end;cursor:pointer;';
+                var hostel = AppData.get('hostelList').find(function(h) { return h.name === r.hostel; });
+                div.style.backgroundImage = 'url(' + (hostel && hostel.image ? hostel.image : '../assets/media/bedroom_10.jpg') + ')';
+                div.innerHTML = '<div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to top,rgba(0,0,0,0.85),rgba(0,0,0,0.1));z-index:1;"></div><div style="position:relative;z-index:2;color:white;padding:25px;width:100%;"><h3 style="font-size:22px;margin-bottom:8px;">' + r.hostel + ' - ' + r.type + '</h3><p style="font-size:14px;margin-bottom:6px;">Capacity: ' + r.capacity + ' guest(s)</p><p style="font-size:14px;margin-bottom:6px;">Amenities: ' + r.amenities.join(', ') + '</p><p style="font-size:18px;font-weight:bold;margin-bottom:12px;">' + mk(r.price) + ' / night</p><a href="booking-details.html?room=' + r.id + '" style="display:inline-block;padding:8px 20px;background:#009272;color:white;border:none;border-radius:5px;text-decoration:none;font-size:14px;cursor:pointer;">Book Now</a></div>';
+                container.appendChild(div);
+            });
+        }
+        var allRooms = AppData.getAvailableRooms(null, null, null);
+        renderRooms(allRooms);
+        qs('search-results-info').textContent = allRooms.length + ' room(s) available';
+        qs('search-btn').addEventListener('click', function() {
+            var checkIn = qs('filter-checkin').value;
+            var checkOut = qs('filter-checkout').value;
+            var filters = {};
+            if (qs('filter-price').value) filters.maxPrice = qs('filter-price').value;
+            if (qs('filter-capacity').value) filters.capacity = parseInt(qs('filter-capacity').value);
+            if (qs('filter-type').value) filters.type = qs('filter-type').value;
+            var results = AppData.getAvailableRooms(checkIn || null, checkOut || null, Object.keys(filters).length ? filters : null);
+            renderRooms(results);
+            qs('search-results-info').textContent = results.length + ' room(s) found';
+        });
+    }
+
+    /* Bootstrap */
+    document.addEventListener('DOMContentLoaded', function() {
+        if (qs('login-form')) initLogin();
+        if (qs('signup-form')) initSignup();
+        if (qs('reset-request-form')) initResetPassword();
+        if (qs('contact-form')) initContact();
+        if (qs('room-results')) initHostels();
+        var session = AppData.getSession();
+        if (session) {
+            qsa('.admin-info').forEach(function(s) { s.textContent = session.user.firstName + ' ' + session.user.lastName; });
+            if (qs('current-bookings-body')) initDashboard(session);
+            if (qs('bookings-table-body')) initMyBookings(session);
+            if (qs('booking-details-container')) initBookingDetails(session);
+            if (qs('notifications-container')) initNotifications(session);
+            if (qs('profile-form')) initEditProfile(session);
+        }
+    });
+})();
