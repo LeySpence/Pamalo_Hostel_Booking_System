@@ -845,6 +845,43 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
+
+         header{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .topnav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hamburger{
+        display: block;
+        cursor: pointer;
+        font-size: 30px;
+    }
+
+    .navbar{
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar.active{
+        display: flex;
+    }
+
+    .navbar a{
+        padding: 15px;
+        text-align: center;
+        margin: 0;
+        border-top: 1px solid rgba(255,255,255,0.2);
+    }
+
+
     .dash-body { flex-direction: column; }
     .sidebar { width: 100%; min-height: auto; padding: 12px 20px; }
     .sidebar h2 { margin-bottom: 16px; font-size: 18px; }
