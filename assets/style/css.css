@@ -10,29 +10,35 @@ body {
 
 .hamburger {
     display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    font-size: 26px;
+    color: #fff;
 }
 
 header {
     position: fixed;
-    top: 0%;
+    top: 0;
     width: 100%;
     background-color: #009272c1;
     color: #fff;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    z-index: 1000; 
-    }
+    padding: 20px 25px;
+    z-index: 1000;
+}
 
 .logo h1 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     padding: 10px;
 }
@@ -316,7 +322,7 @@ header {
 }
 
 #hostel-card1{
-    background-image: url('../media/bedroom_2.jpg');
+    background-image: url('../media/bedroom_1.jpg');
 }
 
 #hostel-card2{
@@ -325,6 +331,16 @@ background-image: url('../media/bedroom_10.jpg');
 
 #hostel-card3{
     background-image: url('../media/bedroom_1.jpg');
+}
+
+
+/* uyambile apa*/
+#hostel-card4{
+background-image: url('../media/bedroom_15.jpg');
+}
+
+#hostel-card5{
+background-image: url('../media/bedroom_14.jpg');
 }
 
 .hostel-card-content h3 {
@@ -513,8 +529,13 @@ footer {
         max-width: 100%;
         width: 100%;
     }
+
+
+    .hostel-cards{
+        flex-direction: column;
+    }
 }
-/* --- ADMIN-STYLE DASHBOARD --- */
+
 .dash-body {
     display: flex;
     background-color: #f4f6f9;
@@ -948,6 +969,13 @@ footer {
 
 .payment-card .payment-form button[type="submit"] {
     width: 100%;
+<<<<<<< HEAD
+    font-family: inherit;
+}
+
+.login-section input[type="text"]:focus,
+.login-section input[type="password"]:focus {
+=======
     padding: 14px;
     background-color: #009272;
     color: #fff;
@@ -1019,10 +1047,21 @@ footer {
 }
 
 .login-section input:focus {
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
     border-color: #009272;
 }
 
 .login-section input[type="submit"] {
+<<<<<<< HEAD
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: #009272;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+=======
     width: 100%;
     padding: 14px;
     background-color: #009272;
@@ -1033,14 +1072,34 @@ footer {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .login-section input[type="submit"]:hover {
     background-color: #007a5e;
+<<<<<<< HEAD
+    transform: translateY(-1px);
+}
+
+.login-section p {
+    margin-top: 15px;
+    color: #333;
+    font-size: 16px;
+=======
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .login-section a {
     color: #009272;
+<<<<<<< HEAD
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-section a:hover {
+    text-decoration: underline;
+=======
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 section.team {

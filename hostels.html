@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="assets/js/script.js" defer></script>
     <title>Hostels - Pamalo Hostel Booking System</title>
 </head>
+
 <body>
     <header>
         <div class="topnav">
@@ -28,25 +30,31 @@
     <main>
         <section class="hostels">
             <h2>Browse Hostels</h2>
-            <p style="text-align:center;color:#777;margin-bottom:30px;">Search available rooms by date, price, type, and more.</p>
+            <p style="text-align:center;color:#777;margin-bottom:30px;">Search available rooms by date, price, type, and
+                more.</p>
 
             <div class="search-filters" style="background:#f9f9f9;padding:20px;border-radius:10px;margin-bottom:30px;">
-                <div class="form-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;">
+                <div class="form-row"
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;">
                     <div class="form-group" style="margin:0;">
                         <label style="font-size:13px;font-weight:600;color:#555;">Check-in</label>
-                        <input type="date" id="filter-checkin" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
+                        <input type="date" id="filter-checkin"
+                            style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
                     </div>
                     <div class="form-group" style="margin:0;">
                         <label style="font-size:13px;font-weight:600;color:#555;">Check-out</label>
-                        <input type="date" id="filter-checkout" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
+                        <input type="date" id="filter-checkout"
+                            style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
                     </div>
                     <div class="form-group" style="margin:0;">
                         <label style="font-size:13px;font-weight:600;color:#555;">Max Price (MK)</label>
-                        <input type="number" id="filter-price" placeholder="e.g. 50000" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
+                        <input type="number" id="filter-price" placeholder="e.g. 50000"
+                            style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
                     </div>
                     <div class="form-group" style="margin:0;">
                         <label style="font-size:13px;font-weight:600;color:#555;">Capacity</label>
-                        <select id="filter-capacity" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
+                        <select id="filter-capacity"
+                            style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
                             <option value="">Any</option>
                             <option value="1">1 person</option>
                             <option value="2">2 people</option>
@@ -56,7 +64,8 @@
                     </div>
                     <div class="form-group" style="margin:0;">
                         <label style="font-size:13px;font-weight:600;color:#555;">Room Type</label>
-                        <select id="filter-type" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
+                        <select id="filter-type"
+                            style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:5px;">
                             <option value="">All Types</option>
                             <option value="Single Room">Single Room</option>
                             <option value="Double Room">Double Room</option>
@@ -70,12 +79,54 @@
                 </div>
             </div>
 
+            <div class="hostel-cards">
+                <div class="hostel-card" id="hostel-card1">
+                    <div class="hostel-card-content">
+                        <h3>Cozy Hostel</h3>
+                        <p>Experience comfort and affordability at Cozy Hostel, located in the heart of the city.</p>
+                        <button>Book Hostel</button>
+                    </div>
+                </div>
+                <div class="hostel-card" id="hostel-card2">
+                    <div class="hostel-card-content">
+                        <h3>Luxury Hostel</h3>
+                        <p>A home away from home at Luxury Hostel, located in the heart of the city.</p>
+                        <button>Book Hostel</button>
+                    </div>
+                </div>
+
+                <div class="hostel-card" id="hostel-card3">
+                    <div class="hostel-card-content">
+                        <h3>City Hostel</h3>
+                        <p>Your comfort is our commitment at City Hostel, located in the heart of the city.</p>
+                        <button>Book Hostel</button>
+                    </div>
+                </div>
+
+                    <div class="hostel-card" id="hostel-card3">
+                    <div class="hostel-card-content">
+                        <h3>Safe haven Hostel</h3>
+                        <p>Where comfort meets convenience at Safe haven Hostel, located in the heart of the city.</p>
+                        <button>Book Hostel</button>
+                    </div>
+                </div>
+
+                <div class="hostel-card" id="hostel-card4">
+                    <div class="hostel-card-content">
+                        <h3>Grace Hostel</h3>
+                        <p>Comfort in every corner at Grace Hostel, located in the heart of the city.</p>
+                        <button>Book Hostel</button>
+                    </div>
+                </div
+            
+
             <div id="search-results-info" style="margin-bottom:20px;color:#777;font-size:14px;"></div>
             <div id="room-results" class="hostel-cards"></div>
         </section>
     </main>
-    <footer>
+    <footer>  
         <p>&copy; 2026 Pamalo Hostel Booking System. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
