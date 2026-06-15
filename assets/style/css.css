@@ -16,7 +16,7 @@ header {
     position: fixed;
     top: 0%;
     width: 100%;
-    background-color: #00927288;
+    background-color: #009272c1;
     color: #fff;
     display: flex;
     justify-content: space-around;
@@ -38,13 +38,36 @@ header {
 }
 
 .navbar a {
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
     margin: 0 15px;
     font-size: 18px;
 }
 
+.navbar a:hover{
+    color:#00ffa6
+}
 
+
+.hero-section {
+    position: relative;
+    height: 600px;
+    width: 100%; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-top: 80px; 
+}
+
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+/* --- HERO SECTION CAROUSEL STYLES --- */
 .hero-section {
     position: relative;
     height: 600px;
@@ -72,12 +95,89 @@ header {
     height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0;
+    opacity: 0; /* Hides all slides by default */
     transition: opacity 1s ease-in-out;
 }
 
+
 .hero-slider .slide.active {
-    opacity: 1;
+    opacity: 1; 
+}
+
+
+.hero-slider .slide-1 {
+    background-image: url('../media/young-black-couple-sharing-ear-buds-listen-webinar-smartphone.jpg');
+}
+
+.hero-slider .slide-2 {
+    background-image: url('../media/bedroom_10.jpg');
+}
+
+.hero-slider .slide-3 {
+    background-image: url('../media/bedroom_15.jpg');
+}
+
+.hero-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 3;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.hero-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    pointer-events: auto;
+    transition: background-color 0.3s;
+}
+
+.hero-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.hero-section-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px;
+    border-radius: 10px;
+    margin-left: 50px;
+    max-width: 600px;
+    color: white;
+}
+
+.hero-section-content h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.hero-section-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.hero-section-content button {
+    background-color: #009272;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hero-section-content button:hover {
+    background-color: #007a5e;
 }
 
 .hero-controls {
@@ -293,6 +393,18 @@ header {
     width: 100%;
 }
 
+#hostel-card1{
+    background-image: url('../media/bedroom_2.jpg');
+}
+
+#hostel-card2{
+background-image: url('../media/bedroom_10.jpg');
+}
+
+#hostel-card3{
+    background-image: url('../media/bedroom_1.jpg');
+}
+
 .hostel-card-content h3 {
     font-size: 24px;
     margin-bottom: 10px;
@@ -320,13 +432,13 @@ header {
 }
 
 
-/* --- CONTACT SECTION STYLES --- */
+
 .contact {
     padding: 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f9f9f9; /* Subtle background to separate from other sections */
+    background-color: #f9f9f9;
 }
 
 .contact h2 {
@@ -335,7 +447,7 @@ header {
     margin-bottom: 15px;
 }
 
-/* Target ONLY the main intro paragraph, not the ones inside contact-info */
+
 .contact > p {
     text-align: center;
     max-width: 800px;
@@ -345,18 +457,18 @@ header {
     line-height: 1.6;
 }
 
-/* Container holding Info and Form side-by-side */
+
 .contact-container {
     display: flex;
     justify-content: center;
-    align-items: stretch; /* Makes both cards the same height */
+    align-items: stretch; 
     width: 100%;
-    max-width: 1200px; /* Constrains width on large screens */
+    max-width: 1200px; 
     gap: 40px;
     margin-bottom: 40px;
 }
 
-/* Left Side: Contact Info */
+
 .contact-info {
     flex: 1;
     max-width: 450px;
@@ -460,6 +572,15 @@ header {
 }
 
 
+
+footer {
+    background-color:#007a5e;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
 @media (max-width: 900px) {
     .contact-container {
         flex-direction: column;
@@ -471,6 +592,21 @@ header {
         width: 100%;
     }
 }
+/* --- payment --- */
+.payment-heading {
+    padding: 70px;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.payment-form {
+    padding: 10px;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    margin-top: 5px;
+}
 
 footer {
     background-color: #333;
@@ -478,4 +614,72 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 50px;
+}
+
+.login-section {
+    max-width: 450px;
+    margin: 120px auto 60px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.login-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.login-section p {
+    margin-bottom: 18px;
+}
+
+.login-section label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.login-section input[type="text"],
+.login-section input[type="email"],
+.login-section input[type="tel"],
+.login-section input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.login-section input:focus {
+    border-color: #009272;
+}
+
+.login-section input[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background-color: #009272;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-section input[type="submit"]:hover {
+    background-color: #007a5e;
+}
+
+.login-section a {
+    color: #009272;
 }

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style/css.css">
+    <link rel="stylesheet" href="../assets/style/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/data.js" defer></script>
+    <script src="../assets/js/dashboard.js" defer></script>
+    <title>System Settings - Pamalo Hostel Booking System</title>
+</head>
+<body class="dashboard-body">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2><span>Pamalo</span> Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-label">Management</div>
+            <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="manage-rooms.html"><i class="fas fa-bed"></i> Manage Rooms</a>
+            <a href="manage-bookings.html"><i class="fas fa-calendar-check"></i> Manage Bookings</a>
+            <a href="manage-users.html"><i class="fas fa-users"></i> Manage Users</a>
+            <a href="payments.html"><i class="fas fa-credit-card"></i> Payments</a>
+            <a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
+            <div class="nav-label">System</div>
+            <a href="content.html"><i class="fas fa-edit"></i> Content</a>
+            <a href="audit-logs.html"><i class="fas fa-history"></i> Audit Logs</a>
+            <a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Back to Site</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="hamburger-dash"><i class="fas fa-bars"></i></button>
+                <h3 style="font-size:18px;color:#333;font-weight:normal;">System Settings</h3>
+            </div>
+            <div class="topbar-right">
+                <div class="user-info">
+                    <i class="fas fa-user-shield" style="font-size:24px;color:#009272;"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2>System Settings</h2>
+                <p>Manage hostel rules, taxes, currency, booking limits, and integrations.</p>
+            </div>
+
+            <form id="settings-form">
+            <div class="card">
+                <div class="card-header">
+                    <h3>General Settings</h3>
+                </div>
+                <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Currency</label>
+                                <select name="currency">
+                                    <option value="MK">MK (Malawian Kwacha)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Tax Rate (%)</label>
+                                <input type="number" name="taxRate">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Check-in Time</label>
+                                <input type="time" name="checkIn">
+                            </div>
+                            <div class="form-group">
+                                <label>Check-out Time</label>
+                                <input type="time" name="checkOut">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Site Name</label>
+                            <input type="text" name="siteName">
+                        </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Booking Limits</h3>
+                </div>
+                <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Max Nights Per Booking</label>
+                                <input type="number" name="maxNights">
+                            </div>
+                            <div class="form-group">
+                                <label>Max Guests Per Room</label>
+                                <input type="number" name="maxGuests">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Advance Booking (Days)</label>
+                                <input type="number" name="advanceBooking">
+                            </div>
+                            <div class="form-group">
+                                <label>Cancellation Period (Hours)</label>
+                                <input type="number" name="cancellationPeriod">
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Email Settings</h3>
+                </div>
+                <div class="card-body">
+                        <div class="form-group">
+                            <label>SMTP Host</label>
+                            <input type="text" name="smtpHost">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>SMTP Port</label>
+                                <input type="number" name="smtpPort">
+                            </div>
+                            <div class="form-group">
+                                <label>SMTP Security</label>
+                                <select name="smtpSecurity">
+                                    <option value="TLS">TLS</option>
+                                    <option value="SSL">SSL</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>From Email</label>
+                            <input type="email" name="fromEmail">
+                        </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Integration Settings</h3>
+                </div>
+                <div class="card-body">
+                        <div class="form-group">
+                            <label>Payment Gateway API Key</label>
+                            <input type="password" name="paymentGatewayKey">
+                        </div>
+                        <div class="form-group">
+                            <label>Google Maps API Key</label>
+                            <input type="password" name="googleMapsKey">
+                        </div>
+                        <div class="form-group" style="display:flex;align-items:center;gap:12px;">
+                            <label class="toggle-switch">
+                                <input type="checkbox" name="smsEnabled" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span style="font-size:14px;color:#555;">Enable SMS notifications</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save All Settings</button>
+                </div>
+            </div>
+            </form>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Backup & Restore</h3>
+                </div>
+                <div class="card-body">
+                    <div style="display:flex;gap:15px;flex-wrap:wrap;align-items:center;">
+                        <button class="btn btn-primary" id="btn-backup"><i class="fas fa-download"></i> Download Backup</button>
+                        <div>
+                            <label style="font-size:14px;color:#555;display:block;margin-bottom:5px;">Restore from backup file</label>
+                            <input type="file" id="restore-file" accept=".json" style="display:inline-block;width:auto;">
+                            <button class="btn btn-warning" id="btn-restore"><i class="fas fa-upload"></i> Restore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

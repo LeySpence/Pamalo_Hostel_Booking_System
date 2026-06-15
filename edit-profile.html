@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/css.css">
+    <link rel="stylesheet" href="assets/style/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/data.js" defer></script>
+    <script src="assets/js/dashboard.js" defer></script>
+    <title>Edit Profile - Pamalo Hostel Booking System</title>
+</head>
+<body class="dashboard-body">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2><span>Pamalo</span> Hostels</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-label">Main</div>
+            <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="my-bookings.html"><i class="fas fa-calendar-check"></i> My Bookings</a>
+            <a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a>
+            <div class="nav-label">Account</div>
+            <a href="edit-profile.html" class="active"><i class="fas fa-user-cog"></i> Edit Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html"><i class="fas fa-sign-out-alt"></i> Back to Site</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="hamburger-dash"><i class="fas fa-bars"></i></button>
+                <h3 style="font-size:18px;color:#333;font-weight:normal;">Edit Profile</h3>
+            </div>
+            <div class="topbar-right">
+                <a href="notifications.html" class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </a>
+                <div class="user-info">
+                    <i class="fas fa-user-circle" style="font-size:24px;color:#009272;"></i>
+                    <span>John Doe</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2>Edit Profile</h2>
+                <p>Manage your account information and preferences.</p>
+            </div>
+
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Personal Information</h3>
+                </div>
+                <div class="card-body">
+                    <form id="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label>Bio</label>
+                            <textarea name="bio"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Change Password</h3>
+                </div>
+                <div class="card-body">
+                    <form id="password-form">
+                        <div class="form-group">
+                            <label>Current Password</label>
+                            <input type="password" name="currentPassword" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" name="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" name="confirmPassword" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Communication Preferences</h3>
+                </div>
+                <div class="card-body">
+                    <form id="preferences-form">
+                        <div class="form-group" style="display:flex;align-items:center;gap:12px;">
+                            <label class="toggle-switch">
+                                <input type="checkbox" name="emailNotif" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span style="font-size:14px;color:#555;">Email notifications about booking confirmations</span>
+                        </div>
+                        <div class="form-group" style="display:flex;align-items:center;gap:12px;">
+                            <label class="toggle-switch">
+                                <input type="checkbox" name="smsNotif" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span style="font-size:14px;color:#555;">SMS reminders for upcoming stays</span>
+                        </div>
+                        <div class="form-group" style="display:flex;align-items:center;gap:12px;">
+                            <label class="toggle-switch">
+                                <input type="checkbox" name="promotions">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span style="font-size:14px;color:#555;">Promotional offers and newsletters</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

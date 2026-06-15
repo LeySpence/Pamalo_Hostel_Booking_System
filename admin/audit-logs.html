@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style/css.css">
+    <link rel="stylesheet" href="../assets/style/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="../assets/js/script.js" defer></script>
+    <script src="../assets/js/data.js" defer></script>
+    <script src="../assets/js/dashboard.js" defer></script>
+    <title>Audit Logs - Pamalo Hostel Booking System</title>
+</head>
+<body class="dashboard-body">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <h2><span>Pamalo</span> Admin</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-label">Management</div>
+            <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="manage-rooms.html"><i class="fas fa-bed"></i> Manage Rooms</a>
+            <a href="manage-bookings.html"><i class="fas fa-calendar-check"></i> Manage Bookings</a>
+            <a href="manage-users.html"><i class="fas fa-users"></i> Manage Users</a>
+            <a href="payments.html"><i class="fas fa-credit-card"></i> Payments</a>
+            <a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a>
+            <div class="nav-label">System</div>
+            <a href="content.html"><i class="fas fa-edit"></i> Content</a>
+            <a href="audit-logs.html" class="active"><i class="fas fa-history"></i> Audit Logs</a>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Back to Site</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="hamburger-dash"><i class="fas fa-bars"></i></button>
+                <h3 style="font-size:18px;color:#333;font-weight:normal;">Audit Logs</h3>
+            </div>
+            <div class="topbar-right">
+                <div class="user-info">
+                    <i class="fas fa-user-shield" style="font-size:24px;color:#009272;"></i>
+                    <span>Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <h2>Audit Logs</h2>
+                <p>Record of critical system actions for security and accountability.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>System Activity Log</h3>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-download"></i> Export Logs</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>User</th>
+                                    <th>Action</th>
+                                    <th>Resource</th>
+                                    <th>Details</th>
+                                    <th>IP Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="audit-logs-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

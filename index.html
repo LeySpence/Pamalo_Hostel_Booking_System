@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style/css.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- Added defer to ensure DOM is loaded before script runs -->
-    <script src="assets/js/script.js" defer></script> 
+    <script src="assets/js/script.js" defer></script>
     <title>Pamalo Hostel Booking System</title>
 </head>
 
@@ -15,7 +14,7 @@
     <header>
         <div class="topnav">
             <div class="logo">
-                <h1>PAHOBS</h1>
+                <h1>Pamalo Hostel Booking System</h1>
             </div>
             <div class="hamburger">
                 <span>&#9776;</span>
@@ -25,17 +24,19 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
+            <a href="hostels.html">Hostels</a>
             <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
         </nav>
     </header>
-    
+
     <main>
-   
+
         <section class="hero-section">
             <div class="hero-slider">
-                <div class="slide active" style="background-image: url('assets/media/young-black-couple-sharing-ear-buds-listen-webinar-smartphone.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/hero2.jpg');"></div>
-                <div class="slide" style="background-image: url('assets/images/hero3.jpg');"></div>
+                <div class="slide slide-1 active"></div>
+                <div class="slide slide-2"></div>
+                <div class="slide slide-3"></div>
             </div>
             <div class="hero-controls">
                 <button class="prev"><i class="fas fa-chevron-left"></i></button>
@@ -57,18 +58,20 @@
                         Your browser does not support the video tag.
                     </video>
                     <h3>Take a Virtual Tour of Our Hostels</h3>
-                    <p>Experience the comfort and amenities of our hostels through our virtual tour. Get a glimpse of what we have to offer before you book your stay.</p>
+                    <p>Experience the comfort and amenities of our hostels through our virtual tour. Get a glimpse of
+                        what we have to offer before you book your stay.</p>
                 </div>
                 <div class="info">
                     <h3>History</h3>
-                    <p>We are the one and only hostel services in Malawi. Learn about the story and journey of Pamalo Hostel Booking System, and how we've grown to become a trusted name in hostel booking.</p>
+                    <p>We are the one and only hostel services in Malawi. Learn about the story and journey of Pamalo
+                        Hostel Booking System, and how we've grown to become a trusted name in hostel booking.</p>
                     <button>Learn More</button>
                 </div>
             </div>
         </section>
 
         <section class="services">
-            <h2>Our Services</h2> 
+            <h2>Our Services</h2>
             <div class="services-cards">
                 <div class="service-card">
                     <i class="fas fa-bed"></i>
@@ -78,52 +81,58 @@
                 <div class="service-card">
                     <i class="fas fa-bed"></i>
                     <h3>Double Bed Rooms</h3>
-                    <p>Enjoy a hassle-free booking experience with our user-friendly platform and streamlined reservation process.</p>
+                    <p>Enjoy a hassle-free booking experience with our user-friendly platform and streamlined
+                        reservation process.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-calendar-check"></i>
                     <h3>Convenient Booking Process</h3>
-                    <p>Enjoy a hassle-free booking experience with our user-friendly platform and streamlined reservation process.</p>
+                    <p>Enjoy a hassle-free booking experience with our user-friendly platform and streamlined
+                        reservation process.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-star"></i>
                     <h3>Top-Rated Hostels</h3>
-                    <p>Experience the best accommodations with our top-rated hostels, known for their exceptional service and comfort.</p>
+                    <p>Experience the best accommodations with our top-rated hostels, known for their exceptional
+                        service and comfort.</p>
                 </div>
             </div>
         </section>
 
-      
+
         <section class="hostels">
             <h2>Featured Hostels</h2>
             <div class="hostel-cards">
-                <div class="hostel-card" style="background-image: url('assets/images/hostel1.jpg');">
+                <div class="hostel-card" id="hostel-card1">
                     <div class="hostel-card-content">
                         <h3>Cozy Hostel</h3>
                         <p>Experience comfort and affordability at Cozy Hostel, located in the heart of the city.</p>
                         <button>Book Hostel</button>
                     </div>
                 </div>
-                <div class="hostel-card" style="background-image: url('assets/images/hostel2.jpg');">
+                <div class="hostel-card" id="hostel-card2">
                     <div class="hostel-card-content">
                         <h3>Luxury Hostel</h3>
                         <p>Experience comfort and affordability at Luxury Hostel, located in the heart of the city.</p>
                         <button>Book Hostel</button>
                     </div>
                 </div>
-                <div class="hostel-card" style="background-image: url('assets/images/hostel3.jpg');">
+                <div class="hostel-card" id="hostel-card3">
                     <div class="hostel-card-content">
                         <h3>City Hostel</h3>
                         <p>Experience comfort and affordability at City Hostel, located in the heart of the city.</p>
                         <button>Book Hostel</button>
                     </div>
                 </div>
-            </div> 
+            </div>
         </section>
+
+        
 
         <section class="contact">
             <h2>Contact Us</h2>
-            <p>Have questions or need assistance? Reach out to our support team, and we'll be happy to help you with your hostel booking needs.</p>
+            <p>Have questions or need assistance? Reach out to our support team, and we'll be happy to help you with
+                your hostel booking needs.</p>
             <div class="contact-container">
                 <div class="contact-info">
                     <p><i class="fas fa-envelope"></i> infog@pamalo.com</p>
@@ -139,13 +148,16 @@
                 </div>
             </div>
             <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.1234567890123!2d-122.1234567890123!3d37.1234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f123456789012%3A0x1234567890123456!2sPamalo%20Hostel%20Booking%20System!5e0!3m2!1sen!2sus!4v1612345678901" allowfullscreen="" loading="lazy"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.1234567890123!2d-122.1234567890123!3d37.1234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f123456789012%3A0x1234567890123456!2sPamalo%20Hostel%20Booking%20System!5e0!3m2!1sen!2sus!4v1612345678901"
+                    allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
     </main>
-    
+
     <footer>
         <p>&copy; 2026 Pamalo Hostel Booking System. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
