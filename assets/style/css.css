@@ -10,29 +10,35 @@ body {
 
 .hamburger {
     display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    font-size: 26px;
+    color: #fff;
 }
 
 header {
     position: fixed;
-    top: 0%;
+    top: 0;
     width: 100%;
     background-color: #009272c1;
     color: #fff;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    z-index: 1000; 
-    }
+    padding: 20px 25px;
+    z-index: 1000;
+}
 
 .logo h1 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     padding: 10px;
 }
@@ -44,6 +50,40 @@ header {
     font-size: 18px;
 }
 
+<<<<<<< HEAD
+.navbar a:hover {
+    color: #f1f1f1;
+}
+
+main {
+    margin-top: 110px;
+}
+
+@media (max-width: 900px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 146, 114, 0.95);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 10px 0;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar a {
+        margin: 10px 20px;
+        width: calc(100% - 40px);
+    }
+=======
 .navbar a:hover{
     color:#00ffa6
 }
@@ -51,6 +91,7 @@ header {
 .navbar a.active {
     color: #00ffa6;
     font-weight: bold;
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 
@@ -536,8 +577,20 @@ footer {
     font-size: 22px;
 }
 
+<<<<<<< HEAD
+.payment-form {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 110px;
+    background-color: #c8f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: new 'Times New Roman', Times, serif, sans-serif;
+=======
 .sidebar ul {
     list-style: none;
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .sidebar ul li {
@@ -564,6 +617,34 @@ footer {
     color: #fff;
     font-weight: bold;
 }
+<<<<<<< HEAD
+.login-section{
+    max-width: 420px;
+    padding: 30px;
+    margin: 100px auto;
+    background-color: #c8f1f1;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.login-section h2 {
+    margin-bottom: 20px;
+    color: #0f1513;
+}
+
+.login-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.login-section input[type="text"],
+.login-section input[type="password"] {
+    padding: 15px;
+    border: 1px solid #ddd;
+=======
 
 .main-content {
     flex: 1;
@@ -619,6 +700,7 @@ footer {
     padding: 10px 20px;
     background: #fff;
     border: 1px solid #e2e8f0;
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
     border-radius: 8px;
     color: #475569;
     font-size: 14px;
@@ -948,6 +1030,13 @@ footer {
 
 .payment-card .payment-form button[type="submit"] {
     width: 100%;
+<<<<<<< HEAD
+    font-family: inherit;
+}
+
+.login-section input[type="text"]:focus,
+.login-section input[type="password"]:focus {
+=======
     padding: 14px;
     background-color: #009272;
     color: #fff;
@@ -1019,10 +1108,21 @@ footer {
 }
 
 .login-section input:focus {
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
     border-color: #009272;
 }
 
 .login-section input[type="submit"] {
+<<<<<<< HEAD
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    background-color: #009272;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+=======
     width: 100%;
     padding: 14px;
     background-color: #009272;
@@ -1033,12 +1133,32 @@ footer {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .login-section input[type="submit"]:hover {
     background-color: #007a5e;
+<<<<<<< HEAD
+    transform: translateY(-1px);
+}
+
+.login-section p {
+    margin-top: 15px;
+    color: #333;
+    font-size: 16px;
+=======
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .login-section a {
     color: #009272;
+<<<<<<< HEAD
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-section a:hover {
+    text-decoration: underline;
+=======
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }

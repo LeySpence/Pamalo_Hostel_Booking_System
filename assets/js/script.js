@@ -8,11 +8,12 @@ hamburger.addEventListener('click', () => {
 
 //slideshow for hero section
 document.addEventListener('DOMContentLoaded', () => {
-
     const slides = document.querySelectorAll('.hero-slider .slide');
     const prevBtn = document.querySelector('.hero-controls .prev');
     const nextBtn = document.querySelector('.hero-controls .next');
-    
+    const hamburger = document.querySelector('.hamburger');
+    const navbar = document.querySelector('.navbar');
+
     if (slides.length > 0 && prevBtn && nextBtn) {
         let currentSlide = 0;
 
@@ -31,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showSlide(currentSlide);
         }
 
-     
         nextBtn.addEventListener('click', () => {
             nextSlide();
             resetInterval();
@@ -49,6 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
             slideInterval = setInterval(nextSlide, 5000);
         }
     }
+<<<<<<< HEAD
+
+    if (hamburger && navbar) {
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+    }
+=======
 });
 
 
@@ -59,4 +67,5 @@ loginForm.addEventListener("submit", function(e) {
     e.preventDefault(); 
 
     window.location.href = "dashboard.html";
+>>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 });
