@@ -322,7 +322,7 @@ header {
 }
 
 #hostel-card1{
-    background-image: url('../media/bedroom_2.jpg');
+    background-image: url('../media/bedroom_1.jpg');
 }
 
 #hostel-card2{
@@ -331,6 +331,16 @@ background-image: url('../media/bedroom_10.jpg');
 
 #hostel-card3{
     background-image: url('../media/bedroom_1.jpg');
+}
+
+
+/* uyambile apa*/
+#hostel-card4{
+background-image: url('../media/bedroom_15.jpg');
+}
+
+#hostel-card5{
+background-image: url('../media/bedroom_14.jpg');
 }
 
 .hostel-card-content h3 {
@@ -519,8 +529,13 @@ footer {
         max-width: 100%;
         width: 100%;
     }
+
+
+    .hostel-cards{
+        flex-direction: column;
+    }
 }
-/* --- ADMIN-STYLE DASHBOARD --- */
+
 .dash-body {
     display: flex;
     background-color: #f4f6f9;
