@@ -969,13 +969,6 @@ footer {
 
 .payment-card .payment-form button[type="submit"] {
     width: 100%;
-<<<<<<< HEAD
-    font-family: inherit;
-}
-
-.login-section input[type="text"]:focus,
-.login-section input[type="password"]:focus {
-=======
     padding: 14px;
     background-color: #009272;
     color: #fff;
@@ -1047,21 +1040,10 @@ footer {
 }
 
 .login-section input:focus {
->>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
     border-color: #009272;
 }
 
 .login-section input[type="submit"] {
-<<<<<<< HEAD
-    padding: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    background-color: #009272;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-=======
     width: 100%;
     padding: 14px;
     background-color: #009272;
@@ -1072,34 +1054,14 @@ footer {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
->>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .login-section input[type="submit"]:hover {
     background-color: #007a5e;
-<<<<<<< HEAD
-    transform: translateY(-1px);
-}
-
-.login-section p {
-    margin-top: 15px;
-    color: #333;
-    font-size: 16px;
-=======
->>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 .login-section a {
     color: #009272;
-<<<<<<< HEAD
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.login-section a:hover {
-    text-decoration: underline;
-=======
->>>>>>> 36016b171dfd6f764d2ec7f341eb78ce64b05f9a
 }
 
 section.team {
